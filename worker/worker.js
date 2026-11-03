@@ -1,7 +1,7 @@
 // Cloudflare Worker: colours Saudi boundary GeoJSON by value for the Azure Maps reference layer in Power BI.
 //
 // Request:  https://<your-worker>.workers.dev/<file>.json?v=73.81..45
-//   <file>  country | admin2/SA01 | gov/100 | dist/1022115   (same paths as the GitHub repo)
+//   <file>  country | region/R01 | admin2/SA01 | gov/100 | city/1 | dist/1022115   (same paths as the GitHub repo)
 //   v       values 0-100 separated by "." in Child_Index order; an empty slot = no data (grey)
 // Response: the GeoJSON file with fillColor / fillOpacity set on every feature that has an Idx property.
 
@@ -17,7 +17,7 @@ const STOPS = [
 ];
 const NO_DATA = { fillColor: "#BFC5CC", fillOpacity: 0.35 };
 const FILL_OPACITY = 0.75;
-const PATH_OK = /^(country|admin2\/SA\d{2}|gov\/\d{1,5}|dist\/[A-Za-z0-9_]{1,40})\.json$/;
+const PATH_OK = /^(country|region\/R\d{2}|admin2\/SA\d{2}|gov\/\d{1,5}|city\/\d{1,4}|dist\/[A-Za-z0-9_]{1,40})\.json$/;
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
